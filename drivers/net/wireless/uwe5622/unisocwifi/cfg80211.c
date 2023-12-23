@@ -964,9 +964,16 @@ err_start:
 
 static int sprdwl_cfg80211_change_beacon(struct wiphy *wiphy,
 					 struct net_device *ndev,
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 7, 0))
+					 struct cfg80211_ap_update *info)
+#else
 					 struct cfg80211_beacon_data *beacon)
+#endif
 {
 	struct sprdwl_vif *vif = netdev_priv(ndev);
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(6, 7, 0))
+	struct cfg80211_beacon_data *beacon = &(info->beacon);
+#endif
 
 	wl_ndev_log(L_DBG, ndev, "%s\n", __func__);
 #ifdef DFS_MASTER
