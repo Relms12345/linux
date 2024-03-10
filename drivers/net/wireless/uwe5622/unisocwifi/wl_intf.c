@@ -1784,7 +1784,6 @@ void sprdwl_boost(void)
 
 	if (intf->boost == 0) {
 		intf->boost = 1;
-		cpufreq_update_policy(0);
 	}
 }
 
@@ -1794,7 +1793,6 @@ void sprdwl_unboost(void)
 
 	if (intf->boost == 1) {
 		intf->boost = 0;
-		cpufreq_update_policy(0);
 	}
 }
 
