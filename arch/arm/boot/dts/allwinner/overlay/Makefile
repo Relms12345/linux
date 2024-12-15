@@ -49,6 +49,9 @@ dtb-$(CONFIG_MACH_SUN7I) += \
 	sun7i-a20-pps-gpio.dtbo \
 	sun7i-a20-pwm.dtbo \
 	sun7i-a20-spdif-out.dtbo \
+	sun7i-a20-spi0.dtbo \
+	sun7i-a20-spi1.dtbo \
+	sun7i-a20-spi2.dtbo \
 	sun7i-a20-spi-add-cs1.dtbo \
 	sun7i-a20-spi-jedec-nor.dtbo \
 	sun7i-a20-spi-spidev.dtbo \
