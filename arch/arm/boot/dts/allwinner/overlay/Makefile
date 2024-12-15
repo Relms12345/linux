@@ -8,6 +8,9 @@ dtb-$(CONFIG_MACH_SUN4I) += \
 	sun4i-a10-pps-gpio.dtbo \
 	sun4i-a10-pwm.dtbo \
 	sun4i-a10-spdif-out.dtbo \
+	sun4i-a10-spi0.dtbo \
+	sun4i-a10-spi1.dtbo \
+	sun4i-a10-spi2.dtbo \
 	sun4i-a10-spi-jedec-nor.dtbo \
 	sun4i-a10-spi-spidev.dtbo \
 	sun4i-a10-uart2.dtbo \
