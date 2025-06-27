@@ -67,3 +67,11 @@ config AC200_PHY_CTL
 	  Enable this to support the Ethernet PHY operation of the AC200
 	  mixed signal chip. This driver just enables and configures the
 	  PHY, the PHY itself is supported by a standard driver.
+  
+config AW_INNO_COMBOPHY
+	tristate "Allwinner INNO COMBO PHY Driver"
+	depends on ARCH_SUNXI && OF
+	select GENERIC_PHY
+	help
+	  Enable this to support the Allwinner PCIe/USB3.0 combo PHY
+	  with INNOSILICON IP block.
