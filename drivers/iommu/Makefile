@@ -34,3 +34,6 @@ obj-$(CONFIG_IOMMU_SVA) += iommu-sva.o
 obj-$(CONFIG_IOMMU_IOPF) += io-pgfault.o
 obj-$(CONFIG_SPRD_IOMMU) += sprd-iommu.o
 obj-$(CONFIG_APPLE_DART) += apple-dart.o
+obj-$(CONFIG_SUN55I_IOMMU) += sunxi-iommu.o 
+sunxi-iommu-objs :=  sun55i-iommu-pgtable.o
+sunxi-iommu-objs += sun55i-iommu.o
