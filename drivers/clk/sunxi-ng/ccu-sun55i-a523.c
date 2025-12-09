@@ -1186,6 +1186,15 @@ static SUNXI_CCU_MUX_DATA_WITH_GATE(fanout2_clk, "fanout2", fanout_parents,
 				    BIT(23),	/* gate */
 				    0);
 
+static const struct clk_parent_data usb3_ref_parents[] = { { .fw_name = "hosc" }, { .hw = &pll_periph0_200M_clk.hw }, { .hw = &pll_periph1_200M_clk.hw } };
+static SUNXI_CCU_M_DATA_WITH_MUX_GATE(usb3_ref_clk, "usb3-ref",
+		usb3_ref_parents, 0x0A84,
+		0, 5,	/* M */
+		24, 3,	/* mux */
+		BIT(31),	/* gate */
+		0);
+
+
 /*
  * Contains all clocks that are controlled by a hardware register. They
  * have a (sunxi) .common member, which needs to be initialised by the common
@@ -1354,6 +1363,7 @@ static struct ccu_common *sun55i_a523_ccu_clks[] = {
 	&fanout0_clk.common,
 	&fanout1_clk.common,
 	&fanout2_clk.common,
+	&usb3_ref_clk.common,
 };
 
 static struct clk_hw_onecell_data sun55i_a523_hw_clks = {
@@ -1538,8 +1548,9 @@ static struct clk_hw_onecell_data sun55i_a523_hw_clks = {
 		[CLK_FANOUT1]		= &fanout1_clk.common.hw,
 		[CLK_FANOUT2]		= &fanout2_clk.common.hw,
 		[CLK_NPU]		= &npu_clk.common.hw,
+		[CLK_USB3_REF]		= &usb3_ref_clk.common.hw,
 	},
-	.num	= CLK_NPU + 1,
+	.num	= CLK_USB3_REF + 1,
 };
 
 static struct ccu_reset_map sun55i_a523_ccu_resets[] = {
