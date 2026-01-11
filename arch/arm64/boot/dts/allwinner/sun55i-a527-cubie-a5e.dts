@@ -80,6 +80,39 @@
 		gpio = <&r_pio 0 8 GPIO_ACTIVE_HIGH>;	/* PL8 */
 		enable-active-high;
 	};
+
+	reg_pcie_vcc3v3: regulator-pcie-vcc3v3 {
+		compatible = "regulator-fixed";
+		regulator-name = "pcie-3v3";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-enable-ramp-delay = <1000>;
+		regulator-always-on;
+		regulator-boot-on;
+		gpio = <&r_pio 0 11 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+	};
+
+	gma340_oe: gma340-oe {
+		compatible = "regulator-fixed";
+		regulator-name = "gma340-oe";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-always-on;
+		regulator-boot-on;
+		gpio = <&pio 1 7 GPIO_ACTIVE_LOW>;
+	};
+
+	gma340_pcie: gma340-pcie {
+		compatible = "regulator-fixed";
+		regulator-name = "gma340-pcie";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-always-on;
+		regulator-boot-on;
+		gpio = <&pio 1 6 GPIO_ACTIVE_HIGH>;
+		enable-active-high;
+	};
 };
 
 &ehci0 {
@@ -447,3 +480,28 @@
 		status = "okay";
 	};
 };
+
+/* PCIE and USB Switch */
+&combophy {
+	resets = <&ccu RST_BUS_PCIE_USB3>;
+	phy_use_sel = <0>; /* 0:PCIE; 1:USB3 */
+	status = "okay";
+};
+
+&pcie {
+	reset-gpios = <&pio 7 11 GPIO_ACTIVE_HIGH>;
+	wake-gpios = <&pio 7 12 GPIO_ACTIVE_HIGH>;
+	num-lanes  = <1>;
+	clk-freq-100M;
+	pcie3v3-supply = <&reg_pcie_vcc3v3>;
+	status = "okay";
+};
+
+&usbc1 {
+	device_type = "usbc1";
+	usb_regulator_io = "nocare";
+	usb_wakeup_suspend = <1>;
+	wakeup-source;
+	status = "okay";
+};
+
