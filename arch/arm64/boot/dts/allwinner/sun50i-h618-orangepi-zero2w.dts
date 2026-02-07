@@ -153,7 +153,7 @@
 		pwm4: pwm4@0300a000 {
 			compatible = "allwinner,sunxi-pwm4";
 			pinctrl-names = "default";
-			pinctrl-0 = <&pwm4_ph_pin>;
+			pinctrl-0 = <&pwm4_pi_pin>;
 		};
 
 		pwm5: pwm5@0300a000 {
@@ -680,6 +680,12 @@
 	/omit-if-no-ref/
 	pwm4_ph_pin: pwm4-ph-pin {
 		pins = "PH1";
+		function = "pwm4";
+	};
+
+	/omit-if-no-ref/
+	pwm4_pi_pin: pwm4-pi-pin {
+		pins = "PI14";
 		function = "pwm4";
 	};
 

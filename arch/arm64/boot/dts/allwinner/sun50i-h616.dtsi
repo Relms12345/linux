@@ -498,6 +498,12 @@
 				function = "pwm4";
 			};
 
+			/omit-if-no-ref/
+			pwm4_pi_pin: pwm4-pi-pin {
+				pins = "PI14";
+				function = "pwm4";
+			};
+
 			pwm5_pin: pwm5-pin {
 				pins = "PA12";
 				function = "pwm5";
@@ -1599,7 +1605,7 @@
 					hysteresis = <0>;
 				};
 			};
-		};
+		}; 
 
 		ve-thermal {
 			polling-delay-passive = <0>;
