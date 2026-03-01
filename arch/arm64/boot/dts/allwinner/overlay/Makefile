@@ -78,6 +78,7 @@ dtb-$(CONFIG_ARCH_SUNXI) += \
 	sun50i-h616-uart2-ph-rts-cts.dtbo \
 	sun50i-h616-uart5.dtbo \
 	sun50i-h616-spi-spidev.dtbo \
+	sun50i-h616-spidev1-cs0-cs1.dtbo \
 	sun50i-h616-spidev0_0.dtbo \
 	sun50i-h616-spidev1_0.dtbo \
 	sun50i-h616-spidev1_1.dtbo \
