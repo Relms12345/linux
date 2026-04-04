@@ -11,6 +11,7 @@
 			pinctrl-names = "default";
 			pinctrl-0 = <&i2c1_pi_pins>;
 			status = "okay";
+			clock-frequency = <400000>;
 		};
 	};
 };
