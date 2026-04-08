@@ -487,8 +487,20 @@
 			};
 
 			/omit-if-no-ref/
+			pwm2_pi_pin: pwm2-pi-pin {
+				pins = "PI12";
+				function = "pwm2";
+			};
+
+			/omit-if-no-ref/
 			pwm3_ph_pin: pwm3-ph-pin {
 				pins = "PH0";
+				function = "pwm3";
+			};
+
+			/omit-if-no-ref/
+			pwm3_pi_pin: pwm3-pi-pin {
+				pins = "PI13";
 				function = "pwm3";
 			};
 

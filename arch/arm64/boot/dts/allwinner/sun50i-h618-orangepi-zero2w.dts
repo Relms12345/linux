@@ -135,19 +135,19 @@
 		pwm1: pwm1@0300a000 {
 			compatible = "allwinner,sunxi-pwm1";
 			pinctrl-names = "default";
-			pinctrl-0 = <&pwm1_ph_pin>;
+			pinctrl-0 = <&pwm1_pi_pin>;
 		};
 
 		pwm2: pwm2@0300a000 {
 			compatible = "allwinner,sunxi-pwm2";
 			pinctrl-names = "default";
-			pinctrl-0 = <&pwm2_ph_pin>;
+			pinctrl-0 = <&pwm2_pi_pin>;
 		};
 
 		pwm3: pwm3@0300a000 {
 			compatible = "allwinner,sunxi-pwm3";
 			pinctrl-names = "default";
-			pinctrl-0 = <&pwm3_ph_pin>;
+			pinctrl-0 = <&pwm3_pi_pin>;
 		};
 
 		pwm4: pwm4@0300a000 {
@@ -666,14 +666,32 @@
 	};
 
 	/omit-if-no-ref/
+	pwm1_pi_pin: pwm1-pi-pin {
+		pins = "PI11";
+		function = "pwm1";
+	};
+
+	/omit-if-no-ref/
 	pwm2_ph_pin: pwm2-ph-pin {
 		pins = "PH2";
 		function = "pwm2";
 	};
 
 	/omit-if-no-ref/
+	pwm2_pi_pin: pwm2-pi-pin {
+		pins = "PI12";
+		function = "pwm2";
+	};
+
+	/omit-if-no-ref/
 	pwm3_ph_pin: pwm3-ph-pin {
 		pins = "PH0";
+		function = "pwm3";
+	};
+
+	/omit-if-no-ref/
+	pwm3_pi_pin: pwm3-pi-pin {
+		pins = "PI13";
 		function = "pwm3";
 	};
 
