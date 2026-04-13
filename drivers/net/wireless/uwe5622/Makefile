@@ -4,7 +4,7 @@ endif
 obj-$(CONFIG_WLAN_UWE5622)    += unisocwifi/
 obj-$(CONFIG_TTY_OVERY_SDIO)  += tty-sdio/
 
-UNISOCWCN_DIR := $(shell cd $(src)/unisocwcn/ && /bin/pwd)
+UNISOCWCN_DIR := $(shell cd $(src)/unisocwcn/ && pwd)
 UNISOC_BSP_INCLUDE := $(UNISOCWCN_DIR)/include
 export UNISOC_BSP_INCLUDE
 
