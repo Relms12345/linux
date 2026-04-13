@@ -265,7 +265,6 @@ int sprdwl_cmd_init(void)
 #endif
 	if (!cmd->wake_lock) {
 		wl_err("%s wakeup source register error.\n", __func__);
-		return -EINVAL;
 	}
 
 #ifdef CP2_RESET_SUPPORT

@@ -2,7 +2,7 @@ PWD := $(shell pwd)
 CURFOLDER ?= $(pwd)
 
 LD_CFLAGS += -D__linux__
-EXTRA_CFLAGS=-fno-pic
+EXTRA_CFLAGS += -fno-pic
 
 all_dependencies := driver
 driver_dependencies :=
@@ -76,7 +76,7 @@ BSP_CHIP_ID := uwe5622
 WCN_HW_TYPE := sdio
 endif
 
-ifeq ($(CONFIG_AW_WIFI_DEVICE_UWE5622),y)
+ifneq ($(CONFIG_AW_WIFI_DEVICE_UWE5622),)
 export CONFIG_WCN_SDIO = y
 #export CONFIG_WCN_USB = y
 # export CONFIG_WCN_GNSS = y
@@ -129,9 +129,9 @@ ccflags-y += -DCONFIG_WCN_BOOT
 ccflags-y += -DCONFIG_WCN_UTILS
 
 #### include path ######
-ccflags-y += -I$(src)/include/
-ccflags-y += -I$(src)/platform/
-ccflags-y += -I$(src)/platform/rf/
+ccflags-y += -I$(UNISOC_BSP_INCLUDE)/
+ccflags-y += -I$(srctree)/$(src)/platform/
+ccflags-y += -I$(srctree)/$(src)/platform/rf/
 
 #### add cflag for Customer ######
 ### ---------- Hisilicon start ---------- ###
@@ -315,7 +315,7 @@ endif
 ### ---------- Rockchip end ---------- ###
 
 ### ---------- Allwinner start ---------- ###
-ifeq ($(CONFIG_AW_WIFI_DEVICE_UWE5622),y)
+ifneq ($(CONFIG_AW_WIFI_DEVICE_UWE5622),)
 #### add cflag ######
 ccflags-y += -DCONFIG_AW_BOARD
 #ccflags-y += -DCONFIG_WCN_PARSE_DTS
