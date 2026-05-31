@@ -114,7 +114,7 @@ static int sunxi_ahub_dai_set_pll(struct snd_soc_dai *dai,
                        return -EINVAL;
                }
        }
-       if (clk_set_rate(clk_info->clk_module, freq_out / 2)) {
+       if (clk_set_rate(clk_info->clk_module, freq_out)) {
                SND_LOG_ERR(HLOG, "freq : %u module clk unsupport\n", freq_out);
                return -EINVAL;
        }
@@ -286,7 +286,7 @@ static int sunxi_ahub_dai_set_bclk_ratio(struct snd_soc_dai *dai, unsigned int r
 
        regmap_update_bits(regmap, SUNXI_AHUB_I2S_CLKD(tdm_num),
                           0xf << I2S_CLKD_BCLKDIV,
-                          (bclk_ratio - 2) << I2S_CLKD_BCLKDIV);
+                          bclk_ratio << I2S_CLKD_BCLKDIV);
 
        return 0;
 }

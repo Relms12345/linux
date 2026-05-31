@@ -832,8 +832,8 @@
 			compatible = "allwinner,sunxi-snd-plat-ahub_dam";
 			reg        = <0x05097000 0x1000>;
 			resets     = <&ccu RST_BUS_AUDIO_HUB>;
-			clocks     = <&ccu CLK_AUDIO_CODEC_1X>,
-				     <&ccu CLK_AUDIO_CODEC_4X>,
+			clocks     = <&ccu CLK_PLL_AUDIO_HS>,
+				     <&ccu CLK_PLL_AUDIO_4X>,
 				     <&ccu CLK_AUDIO_HUB>,
 				     <&ccu CLK_BUS_AUDIO_HUB>;
                         clock-names =   "clk_pll_audio",
@@ -841,6 +841,17 @@
 					"clk_audio_hub",
 					"clk_bus_audio_hub";
 			status = "disabled";
+		};
+
+		ahub_dam_mach:ahub_dam_mach {
+			compatible = "allwinner,sunxi-snd-mach";
+			soundcard-mach,name = "ahubdam";
+			status          = "disabled";
+			soundcard-mach,cpu {
+				sound-dai = <&ahub_dam_plat>;
+			};
+			soundcard-mach,codec {
+			};
 		};
 
 		ahub1_plat:ahub1_plat {
@@ -1046,6 +1057,7 @@
 		hdmi: hdmi@6000000 {
 			compatible = "allwinner,sun50i-h616-dw-hdmi",
 				     "allwinner,sun50i-h6-dw-hdmi";
+			#sound-dai-cells = <0>;
 			reg = <0x06000000 0x10000>;
 			reg-io-width = <1>;
 			interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;

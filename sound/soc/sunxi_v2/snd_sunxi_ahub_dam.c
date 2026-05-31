@@ -370,19 +370,19 @@ static int snd_soc_sunxi_ahub_clk_init(struct platform_device *pdev,
 		ret = -EBUSY;
 		goto err_pll_clk;
 	}
-	//clk_info->clk_pllx4 = of_clk_get_by_name(np, "clk_pll_audio_4x");
-	//if (IS_ERR_OR_NULL(clk_info->clk_pllx4)) {
-	//	SND_LOG_ERR(HLOG, "clk pllx4 get failed\n");
-	//	ret = -EBUSY;
-	//	goto err_pllx4_clk;
-	//}
+	clk_info->clk_pllx4 = of_clk_get_by_name(np, "clk_pll_audio_4x");
+	if (IS_ERR_OR_NULL(clk_info->clk_pllx4)) {
+		SND_LOG_ERR(HLOG, "clk pllx4 get failed\n");
+		ret = -EBUSY;
+		goto err_pllx4_clk;
+	}
 
 	/* set ahub clk parent */
-	//if (clk_set_parent(clk_info->clk_module, clk_info->clk_pllx4)) {
-	//	SND_LOG_ERR(HLOG, "set parent of clk_module to pllx4 failed\n");
-	//	ret = -EINVAL;
-	//	goto err_set_parent_clk;
-	//}
+	if (clk_set_parent(clk_info->clk_module, clk_info->clk_pllx4)) {
+		SND_LOG_ERR(HLOG, "set parent of clk_module to pllx4 failed\n");
+		ret = -EINVAL;
+		goto err_set_parent_clk;
+	}
 
 	/* enable clk of ahub */
 	if (clk_prepare_enable(clk_info->clk_pll)) {
@@ -404,14 +404,12 @@ static int snd_soc_sunxi_ahub_clk_init(struct platform_device *pdev,
 	return 0;
 
 err_module_clk_enable:
-//	clk_disable_unprepare(clk_info->clk_pllx4);
-//err_pllx4_clk_enable:
 	clk_disable_unprepare(clk_info->clk_pll);
 err_pll_clk_enable:
-//err_set_parent_clk:
-//	clk_put(clk_info->clk_pllx4);
-//err_pllx4_clk:
-//	clk_put(clk_info->clk_pll);
+err_set_parent_clk:
+	clk_put(clk_info->clk_pllx4);
+err_pllx4_clk:
+	clk_put(clk_info->clk_pll);
 err_pll_clk:
 	clk_put(clk_info->clk_module);
 err_module_clk:
@@ -481,8 +479,7 @@ static void sunxi_ahub_dam_dev_remove(struct platform_device *pdev)
 	clk_put(clk_info->clk_module);
 	clk_disable_unprepare(clk_info->clk_pll);
 	clk_put(clk_info->clk_pll);
-	//clk_disable_unprepare(clk_info->clk_pllx4);
-	//clk_put(clk_info->clk_pllx4);
+	clk_put(clk_info->clk_pllx4);
 	clk_disable_unprepare(clk_info->clk_bus);
 	clk_put(clk_info->clk_bus);
 	reset_control_assert(clk_info->clk_rst);
