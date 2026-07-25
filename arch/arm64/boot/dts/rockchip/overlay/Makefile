@@ -126,9 +126,6 @@ dtbo-$(CONFIG_ARCH_ROCKCHIP) += \
 scr-$(CONFIG_ARCH_ROCKCHIP) += \
        rockchip-fixup.scr
 
-dtbotxt-$(CONFIG_ARCH_ROCKCHIP) += \
-       README.rockchip-overlays
-
 dtb-y += $(dtbo-y) $(scr-y) $(dtbotxt-y)
 
 clean-files    := *.dtbo *.scr
