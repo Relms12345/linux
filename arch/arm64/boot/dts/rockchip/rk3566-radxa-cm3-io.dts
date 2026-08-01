@@ -279,3 +279,75 @@
 		remote-endpoint = <&hdmi_in_vp0>;
 	};
 };
+
+&i2c2 {
+	reg = <0x0 0xfe5b0000 0x0 0x1000>;
+	interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+	clocks = <&cru CLK_I2C2>, <&cru PCLK_I2C2>;
+	clock-names = "i2c", "pclk";
+	pinctrl-0 = <&i2c2m0_xfer>;
+	pinctrl-names = "default";
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+};
+
+&spi3 {
+	reg = <0x0 0xfe640000 0x0 0x1000>;
+	interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
+	clocks = <&cru CLK_SPI3>, <&cru PCLK_SPI3>;
+	clock-names = "spiclk", "apb_pclk";
+	dmas = <&dmac0 26>, <&dmac0 27>;
+	dma-names = "tx", "rx";
+	pinctrl-names = "default";
+	pinctrl-0 = <&spi3m0_cs0 &spi3m0_cs1 &spi3m0_pins>;
+	#address-cells = <1>;
+	#size-cells = <0>;
+	status = "okay";
+	spidev@0 {
+		compatible = "armbian,spi-dev";
+		reg = <0>;
+		spi-max-frequency = <50000000>;
+		status = "okay";
+	};
+};
+
+&pwm4 {
+	reg = <0x0 0xfe6e0000 0x0 0x10>;
+	clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
+	clock-names = "pwm", "pclk";
+	pinctrl-0 = <&pwm4_pins>;
+	pinctrl-names = "default";
+	#pwm-cells = <3>;
+	status = "okay";
+};
+
+&pwm6 {
+	reg = <0x0 0xfe6e0020 0x0 0x10>;
+	clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
+	clock-names = "pwm", "pclk";
+	pinctrl-0 = <&pwm6_pins>;
+	pinctrl-names = "default";
+	#pwm-cells = <3>;
+	status = "okay";
+};
+
+&pwm7 {
+	reg = <0x0 0xfe6e0030 0x0 0x10>;
+	clocks = <&cru CLK_PWM1>, <&cru PCLK_PWM1>;
+	clock-names = "pwm", "pclk";
+	pinctrl-0 = <&pwm7_pins>;
+	pinctrl-names = "default";
+	#pwm-cells = <3>;
+	status = "okay";
+};
+
+&pwm11 {
+	reg = <0x0 0xfe6f0030 0x0 0x10>;
+	clocks = <&cru CLK_PWM2>, <&cru PCLK_PWM2>;
+	clock-names = "pwm", "pclk";
+	pinctrl-0 = <&pwm11m1_pins>;
+	pinctrl-names = "default";
+	#pwm-cells = <3>;
+	status = "okay";
+};
