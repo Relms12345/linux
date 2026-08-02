@@ -82,6 +82,8 @@
 				regulator-min-microvolt = <810000>;
 				regulator-max-microvolt = <990000>;
 				regulator-name = "vdd-gpu-sys";
+				regulator-step-delay-us = <25>;
+				regulator-final-delay-us = <50>;
 			};
 
 			reg_dcdc2: dcdc2 {
@@ -89,6 +91,9 @@
 				regulator-min-microvolt = <810000>;
 				regulator-max-microvolt = <1100000>;
 				regulator-name = "vdd-cpu";
+				regulator-step-delay-us = <25>;
+				regulator-final-delay-us = <50>;
+				regulator-ramp-delay = <200>;
 			};
 
 			reg_dcdc3: dcdc3 {
@@ -96,6 +101,8 @@
 				regulator-min-microvolt = <1100000>;
 				regulator-max-microvolt = <1100000>;
 				regulator-name = "vdd-dram";
+				regulator-step-delay-us = <25>;
+				regulator-final-delay-us = <50>;
 			};
 		};
 	};
