@@ -8,6 +8,7 @@
 #include "sun50i-h616.dtsi"
 #include "sun50i-h616-cpu-opp.dtsi"
 
+#include <dt-bindings/clock/sun6i-rtc.h>
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <dt-bindings/leds/common.h>
@@ -93,8 +94,10 @@
 
 	wifi_pwrseq: wifi-pwrseq {
 		compatible = "mmc-pwrseq-simple";
-		clocks = <&rtc 1>;
-		clock-names = "osc32k-out";
+		clocks = <&rtc CLK_OSC32K_FANOUT>;
+		clock-names = "ext_clock";
+		pinctrl-names = "default";
+		pinctrl-0 = <&x32clk_fanout_pin>;
 		reset-gpios = <&pio 6 18 GPIO_ACTIVE_LOW>; /* PG18 */
 		post-power-on-delay-ms = <200>;
 	};
